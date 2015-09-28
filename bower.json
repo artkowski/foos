@@ -1,0 +1,27 @@
+{
+  "name": "foos",
+  "version": "0.0.0",
+  "authors": [
+    "Artur Jankowski <kontakt@arturjankowski.pl>"
+  ],
+  "main": "index.html",
+  "license": "copyright",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.6",
+    "angular-animate": "~1.4.6",
+    "angular-route": "~1.4.6",
+    "jquery": "~2.1.4",
+    "animate.css": "~3.4.0",
+    "bootstrap": "~3.3.5",
+    "font-awesome": "fontawesome#~4.4.0",
+    "angular-ui-router": "~0.2.15",
+    "lazy.js": "~0.4.2"
+  }
+}
