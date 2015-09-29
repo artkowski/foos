@@ -7,5 +7,6 @@ angular.module('foosApp.app')
 		}, function(data) {
 			console.error('Error', data);
 		});
+
 		console.log('UsersCtrl init');
 	});

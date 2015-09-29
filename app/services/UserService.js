@@ -12,5 +12,25 @@ angular.module('foosApp.services')
 			return def.promise;
 		}
 
+/*
+	http requrest
+	
+	UserService.getAll = function(force) {
+    var def = $q.defer();
+
+    $http({
+      method: 'GET',
+      url: $config.API_URL + this.resource
+    }).success(function(data) {
+      def.resolve(data);
+    }).error(function(data) {
+      def.reject(data);
+    });
+
+    return def.promise;
+  }
+*/
+
+
 		return UserService;
 	});
