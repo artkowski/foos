@@ -28,7 +28,6 @@ angular.module('foosApp.routes')
 			views: {
 				'content@base': {
 					templateUrl: 'views/indexView.html',
-					// controller: 'MainCtrl'
 				}
 			}
 		}

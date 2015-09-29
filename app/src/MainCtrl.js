@@ -1,11 +1,5 @@
 angular.module('foosApp.app')
-	.controller('MainCtrl', function($scope, UserService) {
-		$scope.users = [];
+	.controller('MainCtrl', function($scope) {
 
-		UserService.getAll().then(function(data) {
-			$scope.users = data;
-		}, function(data) {
-			console.error('Error', data);
-		});
 		console.log('MainCtrl init');
 	});
