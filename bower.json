@@ -1,11 +1,11 @@
 {
   "name": "foos",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "authors": [
     "Artur Jankowski <kontakt@arturjankowski.pl>"
   ],
   "main": "index.html",
-  "license": "copyright",
+  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
