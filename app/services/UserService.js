@@ -1,6 +1,6 @@
 // serwis z userami zwracający singleton
 
-module.exports = angular.module('foosApp.services')
+module.exports = angular.module('foosApp.services.user', [])
 	.factory('UserService', function($q) {
 		var UserService = {};
 

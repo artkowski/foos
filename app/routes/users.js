@@ -1,4 +1,4 @@
-require('angular-ui-router');
+var Lazy = require('lazy.js');
 
 var usersRoute = function($stateProvider) {
 	var users = {};
@@ -16,7 +16,7 @@ var usersRoute = function($stateProvider) {
 		url: '/',
 		views: {
 			'content@base': {
-				templateUrl: 'src/users/templates/users.html',
+				templateUrl: 'modules/users/templates/users.html',
 				controller: 'UsersCtrl'
 			}
 		}
@@ -28,5 +28,5 @@ var usersRoute = function($stateProvider) {
 
 };
 
-module.exports = angular.module('foosApp.routes.users', ['ui.router'])
+module.exports = angular.module('foosApp.routes.users', [])
 	.config(usersRoute);

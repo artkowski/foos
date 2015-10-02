@@ -27,18 +27,6 @@ gulp.task('lint', function() {
 		// .pipe(jshint.reporter('fail'));
 });
 
-// gulp.task('browserify', ['cleanBoundle'], function() {
-
-// 	gulp.src('./app/app.js')
-// 		// .pipe(concat('bundled.js'))
-// 		.pipe(browserify({
-// 			insertGlobals: true,
-// 			debug: true
-// 		}))
-// 		.pipe(rename('bundled.js'))
-// 		.pipe(gulp.dest('./app/'));
-// });
-
 gulp.task('browserify', ['cleanBoundle'], function() {
 	var b = browserify({
 		entries: './app/app.js',
@@ -56,6 +44,15 @@ gulp.task('browserify', ['cleanBoundle'], function() {
 		// .pipe(rename('bundled.js'))
 		.pipe(gulp.dest('./app/'))
 })
+
+gulp.task('watch', function() {
+	return gulp.watch([
+		'./app/**/*.js',
+		'./app/**/*.css',
+		'./app/**/*html',
+		'!./app/assets/bower_components/**'
+	], ['build']);
+});
 
 gulp.task('cleanBoundle', function() {
 	return gulp.src('./app/bundled.js')
@@ -117,14 +114,14 @@ gulp.task('connectDist', function() {
 
 
 gulp.task('default', 
-	['lint', 'browserify', 'connect'], function() {
+	['lint',  'browserify', 'connect'], function() {
 	// defaukt task
 	console.log('Default task');
 });
 
 gulp.task('build',
 	// hit clean task before build
-	[ 'lint', 'minify-css', 'minify-js', 
+	[ 'lint', 'minify-css', 'minify-js',
 	'copy-html-files', 
 	'copy-bower-components', 'connectDist']
 );

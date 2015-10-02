@@ -1,21 +1,18 @@
 var angular = require('angular');
 require('angular-ui-router');
-var Lazy = require('lazy.js'),
+// var Lazy = require('lazy.js'),
 	routes = require('./routes/index.js'),
-	config = require('./assets/helpers/config.js');
+	config = require('./assets/helpers/config.js'),
+	services = require('./services'),
+	modules = require('./modules');
 
-console.log(routes);
-console.log(config);
-
-// angular.module('foosApp.config', []);
-angular.module('foosApp.services', []);
 
 angular.module('foosApp.app', [
 	'ui.router',
-	'foosApp.services',
-	// 'foosApp.config',
+	services.name,
 	config.name,
-	routes.name
+	routes.name,
+	modules.name
 ])
 
 .run(function($rootScope, $state, $config) {
