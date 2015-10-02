@@ -1,4 +1,7 @@
-angular.module('foosApp.app')
+require('/app/services/UserService');
+console.log(UserService);
+
+module.exports = angular.module('foosApp.app')
 	.controller('UsersCtrl', function($scope, UserService) {
 		$scope.users = [];
 

@@ -1,6 +1,6 @@
 // serwis z userami zwracający singleton
 
-angular.module('foosApp.services')
+module.exports = angular.module('foosApp.services')
 	.factory('UserService', function($q) {
 		var UserService = {};
 
