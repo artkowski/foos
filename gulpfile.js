@@ -38,8 +38,8 @@ gulp.task('browserify', ['cleanBoundle'], function() {
 		.pipe(source('bundled.js'))
 		.pipe(buffer())
 		.pipe(sourcemaps.init({loadMaps: true}))
-			.pipe(uglify())
-			.on('error', gutil.log)
+			// .pipe(uglify())
+			// .on('error', gutil.log)
 		.pipe(sourcemaps.write('./'))
 		// .pipe(rename('bundled.js'))
 		.pipe(gulp.dest('./app/'))
@@ -48,11 +48,12 @@ gulp.task('browserify', ['cleanBoundle'], function() {
 gulp.task('watch', function() {
 	return gulp.watch([
 		'./app/**/*.js',
+		'!./app/bundled.js',
 		'./app/**/*.css',
 		'./app/**/*html',
 		'!**/node_modules/**',
 		'!./app/assets/bower_components/**'
-	], ['build']);
+	], ['browserify']);
 });
 
 gulp.task('cleanBoundle', function() {
@@ -115,7 +116,7 @@ gulp.task('connectDist', function() {
 
 
 gulp.task('default', 
-	['lint',  'browserify', 'connect'], function() {
+	['lint',  'browserify', 'connect', 'watch'], function() {
 	// defaukt task
 	console.log('Default task');
 });
