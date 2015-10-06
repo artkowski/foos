@@ -1,6 +1,5 @@
 
-module.exports = angular.module('foosApp.modules.MainCtrl', [])
-	.controller('MainCtrl', function($scope) {
+module.exports = /* @ngInject */ function($scope) {
 
-		console.log('MainCtrl init');
-	});
+	console.log('MainCtrl init');
+};

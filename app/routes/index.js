@@ -1,4 +1,7 @@
+require('angular-ui-router');
+
 module.exports = angular.module('foosApp.routes', [
-	require('./main').name,
-	require('./users').name
-]);
+	'ui.router'
+])
+.config(require('./main'))
+.config(require('./users'))

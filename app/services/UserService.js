@@ -1,7 +1,6 @@
 // serwis z userami zwracający singleton
 
-module.exports = angular.module('foosApp.services.user', [])
-	.factory('UserService', function($q) {
+module.exports = /* @ngInject */ function($q) {
 		var UserService = {};
 
 		UserService.getAll = function() {
@@ -33,4 +32,4 @@ module.exports = angular.module('foosApp.services.user', [])
 
 
 		return UserService;
-	});
+	};

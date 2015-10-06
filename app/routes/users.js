@@ -1,6 +1,6 @@
 var Lazy = require('lazy.js');
 
-var usersRoute = function($stateProvider) {
+module.exports = /* @ngInject */ function($stateProvider) {
 	var users = {};
 
 	users.base = {
@@ -27,6 +27,3 @@ var usersRoute = function($stateProvider) {
 	});
 
 };
-
-module.exports = angular.module('foosApp.routes.users', [])
-	.config(usersRoute);

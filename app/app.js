@@ -1,5 +1,4 @@
 var angular = require('angular');
-require('angular-ui-router');
 // var Lazy = require('lazy.js'),
 	routes = require('./routes/index.js'),
 	config = require('./assets/helpers/config.js'),
@@ -8,7 +7,6 @@ require('angular-ui-router');
 
 
 angular.module('foosApp.app', [
-	'ui.router',
 	services.name,
 	config.name,
 	routes.name,

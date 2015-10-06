@@ -10,6 +10,8 @@
   "license": "copyright",
   "devDependencies": {
     "browserify": "^11.2.0",
+    "browserify-ngannotate": "^1.0.1",
+    "browserify-nginject": "^1.5.0",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-linker": "^0.1.7",
@@ -17,6 +19,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.6",
+    "ng-annotate": "^1.0.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },

@@ -1,6 +1,6 @@
 var Lazy = require('lazy.js');
 
-var mainRoute = function($stateProvider, $urlRouterProvider) {
+module.exports = /* @ngInject */ function($stateProvider, $urlRouterProvider) {
 	var main = {};
 
 	main.main = {
@@ -39,6 +39,3 @@ var mainRoute = function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
 
 };
-
-module.exports = angular.module('foosApp.routes.main', [])
-	.config(mainRoute);

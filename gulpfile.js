@@ -20,7 +20,7 @@ var gutil = require('gulp-util');
 gulp.task('lint', function() {
 	var stylish = require('jshint-stylish');
 
-	gulp.src(['./app/**/*.js', '!./app/bundled.js', '!./app/assets/bower_components/**'])
+	gulp.src(['./app/**/*.js', '!./app/bundled.js', '!**/node_modules/**', '!./app/assets/bower_components/**'])
 		.pipe(jshint({ strict: false, node: false }))
 		// .pipe(jshint.reporter('default'))
 		.pipe(jshint.reporter(stylish))
@@ -31,8 +31,8 @@ gulp.task('browserify', ['cleanBoundle'], function() {
 	var b = browserify({
 		entries: './app/app.js',
 		debug: true,
-		transform: [ngAnnotate]
-	});
+		// insertGlobals: true
+	}).transform(ngAnnotate, {})
 
 	return b.bundle()
 		.pipe(source('bundled.js'))
@@ -50,6 +50,7 @@ gulp.task('watch', function() {
 		'./app/**/*.js',
 		'./app/**/*.css',
 		'./app/**/*html',
+		'!**/node_modules/**',
 		'!./app/assets/bower_components/**'
 	], ['build']);
 });

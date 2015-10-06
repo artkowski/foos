@@ -1,3 +1,2 @@
-module.exports = angular.module('foosApp.modules.users', [
-	require('./UsersCtrl').name
-]);
+module.exports = angular.module('foosApp.modules.users', [])
+	.controller('UsersCtrl', require('./UsersCtrl'));
