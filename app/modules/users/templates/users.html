@@ -1,7 +1,22 @@
 <div class="row">
-	<div class="col-xs-12" ng-repeat="user in users">
-		{{ user.name }}
+	<div class="col-xs-12" >
+		<table>
+			<tr ng-repeat="user in users.list">
+				<td ng-repeat="key in _.keys(user)"><b>{{ key }}</b> {{ user[key] }} </td>
+				<td>
+					<button class="btn btn-xs btn-primary" ng-click="users.edit(user)">edit</button>
+					<button class="btn btn-xs btn-danger" ng-click="users.remove(user, $index)">X</button>
+				</td>
+			</tr>
+		</table>
 	</div>
+	<div class="col-xs-12">
+		<form ng-submit="users.add()">
+		<input type="text" ng-model="users.form.name"></input>	
+			<button class="btn btn-primary">Add User</button>
+		</form>
+	</div>
+
 	<div class="col-xs-12">
 		<button class="btn btn-primary" ui-sref="indexView()">Home Page</button>
 	</div>

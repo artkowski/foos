@@ -17,7 +17,8 @@ module.exports = /* @ngInject */ function($stateProvider) {
 		views: {
 			'content@base': {
 				templateUrl: 'modules/users/templates/users.html',
-				controller: 'UsersCtrl'
+				controller: 'UsersCtrl',
+				controllerAs: 'users'
 			}
 		}
 	};
