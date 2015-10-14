@@ -3,7 +3,7 @@
 module.exports = /* @ngInject */ function($config, $q, $http) {
 	// angular style guide
 	var resource = 'users';
-	
+
 	var UserService = {
 		getAll: getAll,
 		add: add,
@@ -27,7 +27,7 @@ module.exports = /* @ngInject */ function($config, $q, $http) {
       url: $config.api_url + resource,
       data: user
   	}).then(function(res) {
-  		if(res.data.response) {
+  		if(res.data.success) {
     		return res.data.user;
     	}
     	return $q.reject(res);
@@ -40,7 +40,7 @@ module.exports = /* @ngInject */ function($config, $q, $http) {
   		url: $config.api_url + [resource, id].join('/'),
   		data: data
   	}).then(function(res) {
-  		if(res.data.response) {
+  		if(res.data.success) {
   			return res.data.user;
   		}
   		return $q.reject(res);
