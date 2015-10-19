@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
-module.exports = /* @ngInject */ function(UserService, $uibModal) {
+module.exports = /* @ngInject */ function(UserService, $uibModal, Notification) {
 	// ViewModel
 	var vm = this;
 	vm.list = [];
@@ -23,16 +23,13 @@ module.exports = /* @ngInject */ function(UserService, $uibModal) {
 		UserService.add(vm.form).then(function(data) {
 			vm.form = {};
 			vm.list.push(data);
-			console.log('Success')
-		}, function(res) {
-			console.error(res);
 		});
 	}
 
 	function editUser(user) {
 		$uibModal.open({
 			templateUrl: './modules/users/templates/modals/editUser.html',
-			controller: function($modalInstance) {
+			controller: /* @ngInject */ function($modalInstance) {
 				var vm = this;
 				vm.form = _.clone(user);
 				vm.close = function() {$modalInstance.close()};
@@ -42,8 +39,6 @@ module.exports = /* @ngInject */ function(UserService, $uibModal) {
 					UserService.edit(user._id, vm.form).then(function(data) {
 						user = _.extend(user, data);
 						vm.close();
-					}, function(res) {
-						console.error(res);
 					});
 				}
 				return vm;
@@ -56,8 +51,6 @@ module.exports = /* @ngInject */ function(UserService, $uibModal) {
 		UserService.remove(user._id).then(function(data) {
 			console.log(data);
 			vm.list.splice(idx, 1);
-		}, function(res) {
-			console.error(res);
 		});
 	}
 

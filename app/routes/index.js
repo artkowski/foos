@@ -5,3 +5,4 @@ module.exports = angular.module('foosApp.routes', [
 ])
 .config(require('./main'))
 .config(require('./users'))
+.config(require('./leagues'))

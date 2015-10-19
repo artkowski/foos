@@ -3,8 +3,13 @@
 	</div>
 	<div class="col-xs-12">
 		<form ng-submit="editUser.save()">
-		<input type="text" ng-model="editUser.form.name"></input>	
-			<button class="btn btn-primary">Edit User</button>
+		<input type="text" ng-model="editUser.form.name"></input>	<br />
+		<input type="text" ng-model="editUser.form.password"></input> <br />	
+		<label>
+			admin
+			<input type="checkbox" ng-model="editUser.form.admin" />
+		</label><br/>
+		<button class="btn btn-primary">Edit User</button>
 		</form>
 	</div>
 

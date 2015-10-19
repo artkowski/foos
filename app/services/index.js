@@ -1,3 +1,5 @@
 
 module.exports = angular.module('foosApp.services', [])
-	.factory('UserService', require('./UserService'));
+	.factory('AuthService', require('./AuthService'))
+	.factory('UserService', require('./UserService'))
+	.factory('LeagueService', require('./LeagueService'))

@@ -7,7 +7,8 @@ module.exports = /* @ngInject */ function($stateProvider, $urlRouterProvider) {
 		name: 'main',
 		abstract: true,
 		templateUrl: 'views/main.html',
-		controller: 'MainCtrl'
+		controller: 'MainCtrl',
+		controllerAs: 'main'
 	}
 
 	main.base = {
@@ -15,6 +16,9 @@ module.exports = /* @ngInject */ function($stateProvider, $urlRouterProvider) {
 		parent: 'main',
 		abstract: true,
 		views: {
+			'navbar@main': {
+				templateUrl: 'views/navbar.html'
+			},
 			'': {
 				templateUrl: 'views/base.html'
 			}
@@ -28,6 +32,8 @@ module.exports = /* @ngInject */ function($stateProvider, $urlRouterProvider) {
 		views: {
 			'content@base': {
 				templateUrl: 'views/indexView.html',
+				controller: 'LeaguesCtrl',
+				controllerAs: 'leagues'
 			}
 		}
 	}

@@ -1,0 +1,50 @@
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ui-sref="indexView">FoosApp</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li ng-class="{ active: $state.includes('indexView') }">
+        	<a ui-sref="indexView">Home</a>
+      	</li>
+        <li ng-class="{ active: $state.includes('users') }">
+        	<a ui-sref="users">Users</a>
+      	</li>
+        <li><a ng-click="main.check()">Check</a></li>
+
+        <!-- <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-header">Nav header</li>
+            <li><a href="#">Separated link</a></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li> -->
+
+      </ul>
+      <form ng-show="!main.user" class="navbar-form navbar-right" role="login" ng-submit="main.login()">
+        <div class="form-group">
+          <input type="text" required="true" ng-model="main.loginForm.login" class="form-control" placeholder="login">
+          <input type="password" required="true" ng-model="main.loginForm.pass" class="form-control" placeholder="pass">
+        </div>
+        <button type="submit" class="btn btn-default">Log in</button>
+      </form>
+      <ul ng-if="!!main.user" class="nav navbar-nav navbar-right">
+      	<li><p class="navbar-text">{{ main.user.name  }}</p></li>
+        <li><button class="btn btn-default navbar-btn" ng-click="main.logout()">Logout</button></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>

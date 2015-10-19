@@ -1,3 +1,52 @@
-<h2>Main template</h2>
+<div ui-view="navbar"></div>
 
-<div ui-view></div>
+<div ui-view class="viewContent"></div>
+
+<style>
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 30px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  background-color: #f5f5f5;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body div.viewContent {
+  padding: 60px 15px 0;
+}
+/*.container .text-muted {
+  margin: 20px 0;
+}
+*/
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+
+</style>
+
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted">FoosApp is the best!</p>
+  </div>
+</footer>
