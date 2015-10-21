@@ -1,7 +1,7 @@
 var config = require('../config');
 
 module.exports = /* @ngInject */ function($q, $http) {
-	var resource = 'league';
+	var resource = 'leagues';
 
 	var LeagueService = {
 		getAll: getAll,

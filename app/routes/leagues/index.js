@@ -12,7 +12,7 @@ module.exports = /* @ngInject */ function($stateProvider) {
 	leagues.details = {
 		name: 'league-details',
 		parent: 'leagues-base',
-		url: '/:id',
+		url: '/:leagueId',
 		views: {
 			'content@base': {
 				templateUrl: 'modules/leagues/templates/league-details.html',

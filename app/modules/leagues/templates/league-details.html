@@ -1,3 +1,9 @@
-<div class="col-xs-12a">
+<div class="col-xs-12">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<h2><small>League</small> {{ league.current.name }} <small>created: {{ league.current.created }}</small></h2>
+			<button class="btn btn-primary" ng-click="league.players(league.current)">Players list</button>
+		</div>
+	</div>
 	{{ league }}
 </div>
