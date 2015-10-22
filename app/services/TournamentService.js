@@ -1,8 +1,8 @@
 var config = require('../config');
 
 module.exports = /* @ngInject */ function($q, $http) {
-	var PlayerService = function(leagueId) {
-		var resource = ['leagues', leagueId, 'players'].join('/');
+	var TournamentService = function(leagueId) {
+		var resource = ['leagues', leagueId, 'tournaments'].join('/');
 		var service = this;
 		service.getAll = getAll;
 		service.add = add;
@@ -19,14 +19,14 @@ module.exports = /* @ngInject */ function($q, $http) {
 				return res.data;
 			});
 		}
-		function add(player) {
+		function add(tournament) {
 			return $http({
 				method: 'POST',
 				url: config.api_url + resource,
-				data: player
+				data: tournament
 			}).then(function(res) {
-				if(!res.data.player) $q.reject(res);
-				return res.data.player;
+				if(!res.data.tournament) $q.reject(res);
+				return res.data.tournament;
 			});
 		}
 		function edit(id, data) {
@@ -35,8 +35,8 @@ module.exports = /* @ngInject */ function($q, $http) {
 				url: config.api_url + [resource, id].join('/'),
 				data: data
 			}).then(function(res) {
-				if(!res.data.player) $q.reject(res);
-				return res.data.player;
+				if(!res.data.tournament) $q.reject(res);
+				return res.data.tournament;
 			});
 		}
 		function remove(id) {
@@ -49,5 +49,5 @@ module.exports = /* @ngInject */ function($q, $http) {
 		}
 	}
 
-	return PlayerService;
+	return TournamentService;
 }

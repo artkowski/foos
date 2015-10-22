@@ -1,18 +1,67 @@
-<div class="col-xs-12">
-	<table class="table table-bordered table-striped table-hover">
-		<thead>
-			<tr>
-				<th>#</th>
-				<th>Name</th>
-				<th>Points</th>
-				<th>City</th>
-				<th>Created</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="player in players.list">
-				<td>{{ player }}</td>
-			</tr>
-		</tbody>
-	</table>
+<div class="row">
+	<div class="col-xs-12 col-sm-6">
+		<form class="form-horizontal" ng-submit="players.add()">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">First Name*</label>
+			<div class="col-sm-10">
+				<input type="text" placeholder="First Name" ng-required="true" class="form-control" ng-model="players.form.name.first">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Last Name</label>
+			<div class="col-sm-10">
+				<input type="text" placeholder="Last Name" class="form-control" ng-model="players.form.name.last">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Points</label>
+			<div class="col-sm-10">
+				<input type="text" placeholder="Points" class="form-control" ng-model="players.form.points">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">City</label>
+			<div class="col-sm-10">
+				<input type="text" placeholder="City" class="form-control" ng-model="players.form.city">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button class="btn btn-primary">Add new player</button>
+			</div>
+		</div>
+		</form>
+	</div>
+</div>
+<!-- table -->
+<div class="row">
+	<div class="col-xs-12">
+		<table class="table table-bordered table-striped table-hover">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Points</th>
+					<th>City</th>
+					<th>Created</th>
+					<th>
+						<button class="btn btn-xs btn-primary" ng-click="players.getAll()">Refresh</button>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="player in players.list">
+					<td>{{ $index +1 }}</td>
+					<td>{{ player.name.first }}</td>
+					<td>{{ player.name.last }}</td>
+					<td>{{ player.points }}</td>
+					<td>{{ player.city }}</td>
+					<td>{{ player.created }}</td>
+					<td><button class="btn btn-xs btn-primary" ng-click="players.edit(player)">Edit</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
 </div>

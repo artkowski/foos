@@ -4,6 +4,7 @@ module.exports = /* @ngInject */ function($state, $stateParams, LeagueService) {
 	vm.current = {};
 	vm.form = {};
 	vm.players = players;
+	vm.newTournament = newTournament;
 	getCurrent();
 
 
@@ -14,9 +15,13 @@ module.exports = /* @ngInject */ function($state, $stateParams, LeagueService) {
 		});
 	}
 
-	function players(league) {
-		console.log(league);
-		$state.go('players', {leagueId: league._id});
+	function players() {
+		$state.go('players', {leagueId: vm.current._id});
+	}
+
+	function newTournament() {
+		console.log(vm.current);
+		$state.go('tournaments', {leagueId: vm.current._id})
 	}
 
 	return vm;
