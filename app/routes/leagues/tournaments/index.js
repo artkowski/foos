@@ -18,10 +18,33 @@ module.exports = /* @ngInject */ function($stateProvider) {
 			'content@base': {
 				templateUrl: 'modules/leagues/tournaments/templates/tournaments.html',
 				controller: 'TournamentsCtrl',
-				controllerAs: 'tournaments'
+				controllerAs: 'tournaments',
 			}
 		}
 	};
+
+	tournaments.details = {
+		name: 'tournament-details',
+		parent: 'tournaments-base',
+		url: '/:tournamentId',
+		views: {
+			'content@base': {
+				templateUrl: 'modules/leagues/tournaments/templates/tournament-details.html',
+				controller: 'TournamentDetailsCtrl',
+				controllerAs: 'tournament',
+				resolve: {
+					currentTournament: currentTournament
+				}
+			}
+		}
+	};
+
+	// @ngInject
+	function currentTournament($stateParams, TournamentService) {
+		console.log($stateParams);
+		var Tournament = new TournamentService($stateParams.leagueId);
+		return Tournament.getOne($stateParams.tournamentId);
+	}
 
 	Lazy(tournaments).each(function(route) {
 		$stateProvider.state(route);

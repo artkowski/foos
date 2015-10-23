@@ -1,22 +1,16 @@
 var _ = require('lodash');
 
-module.exports = /* @ngInject */ function($stateParams, $uibModal, $filter, PlayerService) {
+module.exports = /* @ngInject */ function($stateParams, $uibModal, $filter, playersList, PlayerService) {
 	var Player = new PlayerService($stateParams.leagueId);
 	console.log(Player);
 	// console.log($stateParams.)
 
 	var vm = this;
-	vm.list = [];
+	vm.list = playersList || [];
 	vm.form = {};
 	vm.getAll = getAll;
 	vm.add = add;
 	vm.edit = edit;
-
-	init();
-
-	function init() {
-		getAll();
-	}
 
 	// po dodaniu lub edycji (żeby kolejność się zgadzała)
 	function _listOrderByPoints() {

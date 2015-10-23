@@ -1,0 +1,45 @@
+<div class="row">
+	<div class="col-xs-12">
+		<button class="btn btn-primary pull-right" ng-click="tournament.players()">Edit</button>
+		<h2><small>Tournament</small> {{ tournament.current.name }} <small>created: {{ tournament.current.created }}</small></h2>
+		<p class="lead">
+			{{ tournament.current.desc }}
+		</p>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6">
+				<dl class="dl-horizontal">
+			    <dt>Start Date</dt>
+			    <dd>
+			      {{ tournament.current.startDate }}
+			    </dd>
+			    <dt>End Date</dt>
+			    <dd>
+			      {{ tournament.current.endDate }}
+			    </dd>
+			  </dl>
+			</div>
+		</div>
+		<!-- competitions -->
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="page-head">
+					<h2>
+					Competitions list
+					<button class="btn btn-sm btn-success" ng-click="tournament.newCompetition()">Make new</button>
+					</h2>
+				</div>
+			</div>
+		</div>
+		<!-- competitions -->
+		<div class="row">
+			<div class="col-xs-6">
+				<ul class="list-group">
+					<li ng-repeat="competition in tournament.current.competitions" class="list-group-item">
+						{{ competition.name }} {{ competition.created }} 
+						<button ui-sref="tournament.competitionDetails(competition)" class="btn btn-primary btn-sm">Details</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
