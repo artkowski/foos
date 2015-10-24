@@ -16,7 +16,7 @@ module.exports = /* @ngInject */ function($stateProvider) {
 		url: '/',
 		views: {
 			'content@base': {
-				templateUrl: 'modules/leagues/tournaments/templates/tournaments.html',
+				templateUrl: 'modules/tournaments/templates/tournaments.html',
 				controller: 'TournamentsCtrl',
 				controllerAs: 'tournaments',
 			}
@@ -29,7 +29,7 @@ module.exports = /* @ngInject */ function($stateProvider) {
 		url: '/:tournamentId',
 		views: {
 			'content@base': {
-				templateUrl: 'modules/leagues/tournaments/templates/tournament-details.html',
+				templateUrl: 'modules/tournaments/templates/tournament-details.html',
 				controller: 'TournamentDetailsCtrl',
 				controllerAs: 'tournament',
 				resolve: {
