@@ -1,13 +1,15 @@
 var config = require('../config');
 
 module.exports = /* @ngInject */ function($q, $http) {
-	var CompetitionService = function(params) {
+	var TeamService = function(params) {
 		var resource = [
 			'leagues',
 			params.leagueId,
 			'tournaments',
 			params.tournamentId,
-			 'competitions'
+			'competitions',
+			params.competitionId,
+			'teams'
 		].join('/');
 		var service = this;
 		service.getAll = getAll;
@@ -15,25 +17,7 @@ module.exports = /* @ngInject */ function($q, $http) {
 		service.add = add;
 		service.edit = edit;
 		service.remove = remove;
-		service.start = start;
 
-		service.types = [{
-			name: "Double elimination",
-			value: "2KO"
-		}, {
-			name: "Singe elimination",
-			value: "1KO"
-		}];
-
-		function start(id) {
-			return $http({
-				method: 'PATCH',
-				url: config.api_url + [resource, id].join('/'),
-				data: {action: 'start'}
-			}).then(function(res) {
-				return res.data;
-			});
-		}
 		function getAll() {
 			return $http({
 				method: 'GET',
@@ -50,14 +34,14 @@ module.exports = /* @ngInject */ function($q, $http) {
 	  		return res.data;
 	  	});
 	  }
-		function add(competition) {
+		function add(team) {
 			return $http({
 				method: 'POST',
 				url: config.api_url + resource,
-				data: competition
+				data: team
 			}).then(function(res) {
-				if(!res.data.competition) $q.reject(res);
-				return res.data.competition;
+				if(!res.data.team) $q.reject(res);
+				return res.data.team;
 			});
 		}
 		function edit(id, data) {
@@ -66,8 +50,8 @@ module.exports = /* @ngInject */ function($q, $http) {
 				url: config.api_url + [resource, id].join('/'),
 				data: data
 			}).then(function(res) {
-				if(!res.data.competition) $q.reject(res);
-				return res.data.competition;
+				if(!res.data.team) $q.reject(res);
+				return res.data.team;
 			});
 		}
 		function remove(id) {
@@ -80,5 +64,5 @@ module.exports = /* @ngInject */ function($q, $http) {
 		}
 	}
 
-	return CompetitionService;
+	return TeamService;
 }

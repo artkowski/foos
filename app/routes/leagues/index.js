@@ -6,13 +6,13 @@ module.exports = /* @ngInject */ function($stateProvider) {
 	leagues.base = {
 		name:'leagues-base',
 		parent: 'base',
-		url: '/leagues'
+		abstract: true
 	}
 
 	leagues.details = {
 		name: 'league-details',
 		parent: 'leagues-base',
-		url: '/:leagueId',
+		url: '/leagues/:leagueId',
 		views: {
 			'content@base': {
 				templateUrl: 'modules/leagues/templates/league-details.html',
@@ -22,6 +22,10 @@ module.exports = /* @ngInject */ function($stateProvider) {
 					currentLeague: currentLeague
 				}
 			}
+		},
+		ncyBreadcrumb: {
+			label: 'League ',
+			parent: 'indexView'
 		}
 	};
 

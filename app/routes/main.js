@@ -35,6 +35,9 @@ module.exports = /* @ngInject */ function($stateProvider, $urlRouterProvider) {
 				controller: 'LeaguesCtrl',
 				controllerAs: 'leagues'
 			}
+		},
+		ncyBreadcrumb: {
+			label: 'Index'
 		}
 	}
 

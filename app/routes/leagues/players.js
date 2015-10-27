@@ -7,13 +7,13 @@ module.exports = /* @ngInject */ function($stateProvider) {
 	players.base = {
 		name:'players-base',
 		parent: 'league-details',
-		url: '/players'
+		abstract: true
 	}
 
 	players.players = {
 		name: 'players',
 		parent: 'players-base',
-		url: '/',
+		url: '/players',
 		views: {
 			'content@base': {
 				templateUrl: 'modules/leagues/players/templates/players.html',
@@ -23,6 +23,9 @@ module.exports = /* @ngInject */ function($stateProvider) {
 					playersList: playersList
 				}
 			}
+		},
+		ncyBreadcrumb: {
+			label: 'Players'
 		}
 	};
 

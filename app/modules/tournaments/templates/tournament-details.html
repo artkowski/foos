@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-xs-12">
-		<button class="btn btn-primary pull-right" ng-click="tournament.players()">Edit</button>
+		<button class="btn btn-primary pull-right" ng-click="tournament.edit()">Edit</button>
 		<h2><small>Tournament</small> {{ tournament.current.name }} <small>created: {{ tournament.current.created }}</small></h2>
 		<p class="lead">
 			{{ tournament.current.desc }}
@@ -36,7 +36,7 @@
 				<ul class="list-group">
 					<li ng-repeat="competition in tournament.current.competitions" class="list-group-item">
 						{{ competition.name }} {{ competition.created }} 
-						<button ui-sref="tournament.competitionDetails(competition)" class="btn btn-primary btn-sm">Details</button>
+						<button ng-click="tournament.competitionDetails(competition)" class="btn btn-primary btn-sm">Details</button>
 					</li>
 				</ul>
 			</div>

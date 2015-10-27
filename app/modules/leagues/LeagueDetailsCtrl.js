@@ -1,8 +1,9 @@
 // leaugedetails
-module.exports = /* @ngInject */ function($state, $stateParams, currentLeague, LeagueService) {
+module.exports = /* @ngInject */ function($uibModal, $state, $stateParams, currentLeague, LeagueService) {
 	var vm = this;
 	vm.current = currentLeague;
 	vm.form = {};
+	vm.edit = edit;
 	vm.players = players;
 	vm.refresh = getCurrent;
 	vm.newTournament = newTournament;
@@ -12,6 +13,19 @@ module.exports = /* @ngInject */ function($state, $stateParams, currentLeague, L
 	function getCurrent() {
 		return LeagueService.getOne($stateParams.leagueId).then(function(leauge) {
 			vm.current = leauge;
+		});
+	}
+
+	function edit() {
+		$uibModal.open({
+			templateUrl: './modules/leagues/templates/league-edit-modal.html',
+			controller: 'LeagueEditCtrl',
+			resolve: {
+				currentLeague: function() {
+					return vm.current;
+				}
+			},
+			controllerAs: 'league'
 		});
 	}
 

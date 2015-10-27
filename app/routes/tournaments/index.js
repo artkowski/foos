@@ -7,26 +7,29 @@ module.exports = /* @ngInject */ function($stateProvider) {
 	tournaments.base = {
 		name:'tournaments-base',
 		parent: 'league-details',
-		url: '/tournaments'
+		abstract: true
 	}
 
 	tournaments.tournaments = {
 		name: 'tournaments',
 		parent: 'tournaments-base',
-		url: '/',
+		url: '/tournaments',
 		views: {
 			'content@base': {
 				templateUrl: 'modules/tournaments/templates/tournaments.html',
 				controller: 'TournamentsCtrl',
 				controllerAs: 'tournaments',
 			}
+		},
+		ncyBreadcrumb: {
+			label: 'Tournaments'
 		}
 	};
 
 	tournaments.details = {
 		name: 'tournament-details',
 		parent: 'tournaments-base',
-		url: '/:tournamentId',
+		url: '/tournaments/:tournamentId',
 		views: {
 			'content@base': {
 				templateUrl: 'modules/tournaments/templates/tournament-details.html',
@@ -36,6 +39,9 @@ module.exports = /* @ngInject */ function($stateProvider) {
 					currentTournament: currentTournament
 				}
 			}
+		},
+		ncyBreadcrumb: {
+			label: 'Tournament {{ tournament.name }}'
 		}
 	};
 

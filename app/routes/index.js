@@ -9,3 +9,4 @@ module.exports = angular.module('foosApp.routes', [
 .config(require('./leagues/players'))
 .config(require('./tournaments'))
 .config(require('./competitions'))
+.config(require('./teams'))
