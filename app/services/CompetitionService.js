@@ -16,6 +16,9 @@ module.exports = /* @ngInject */ function($q, $http) {
 		service.edit = edit;
 		service.remove = remove;
 		service.start = start;
+		service.callMatch = callMatch;
+		service.clearCalls = clearCalls;
+		service.selectWinner = selectWinner;
 
 		service.types = [{
 			name: "Double elimination",
@@ -34,6 +37,46 @@ module.exports = /* @ngInject */ function($q, $http) {
 				return res.data;
 			});
 		}
+		function callMatch(id, matchId, tableNumber) {
+			return $http({
+				method: 'PATCH',
+				url: config.api_url + [resource, id].join('/'),
+				data: { 
+					action: 'callMatch',
+					matchId: matchId,
+					table: tableNumber
+				}
+			}).then(function(res) {
+				return res.data.match;
+			});
+		}
+		function clearCalls(id, matchId) {
+			return $http({
+				method: 'PATCH',
+				url: config.api_url + [resource, id].join('/'),
+				data: { 
+					action: 'clearCalls',
+					matchId: matchId
+				}
+			}).then(function(res) {
+				return res.data;
+			});
+		}
+		function selectWinner(id, matchId, winnerId) {
+			return $http({
+				method: 'PATCH',
+				url: config.api_url + [resource, id].join('/'),
+				data: {
+					action: 'selectWinner',
+					matchId: matchId,
+					winnerId: winnerId
+				}
+			}).then(function(res) {
+				return res.data;
+			});
+		}
+
+		// CRUD
 		function getAll() {
 			return $http({
 				method: 'GET',

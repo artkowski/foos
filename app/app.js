@@ -1,7 +1,7 @@
 var angular = require('angular');
 // var Lazy = require('lazy.js'),
 	routes = require('./routes/index.js'),
-	// config = require('./assets/helpers/config.js'),
+	config = require('./assets/helpers/config.js'),
 	services = require('./services'),
 	modules = require('./modules'),
 	_ = require('lodash');
@@ -22,9 +22,7 @@ angular.module('foosApp.app', [
 	'ncy-angular-breadcrumb'
 ])
 
-.constant("$config", {
-	api_url: "http://localhost:3000/"
-})
+.constant("$config", config)
 
 // interceptors
 .config(function($httpProvider) {

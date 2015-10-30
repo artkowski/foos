@@ -8,19 +8,19 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
 				<dl class="dl-horizontal">
-			    <dt>Type</dt>
-			    <dd>
-			      {{ competition.current.type }}
-			    </dd>
-			    <dt>Team Size</dt>
-			    <dd>
-			      {{ competition.current.teamSize }}
-			    </dd>
-			  </dl>
+					<dt>Type</dt>
+					<dd>
+					{{ competition.current.type }}
+					</dd>
+					<dt>Team Size</dt>
+					<dd>
+					{{ competition.current.teamSize }}
+					</dd>
+				</dl>
 			</div>
 		</div>
 		<button class="btn btn-primary pull-right" ng-click="competition.teams()">
-			Teams
+		Teams
 		</button>
 		<button class="btn btn-success" ng-click="competition.start()">Start!</button>
 		<!-- competitions -->
@@ -29,20 +29,91 @@
 				<div class="page-head">
 					<h2>
 					Matches
-					<button class="btn btn-sm btn-success" ng-click="competition.newCompetition()">Make new</button>
+					<button class="btn btn-sm btn-primary" ng-click="competition.refresh()">Refresh</button>
 					</h2>
 				</div>
+				<ul class="nav nav-tabs">
+				  <li role="presentation" ng-class="{active: !vm.filter.winner }">
+				  	<a href ng-click="vm.filter.winner = 0">Current</a>
+				  	</li>
+				  <li role="presentation" ng-class="{active: vm.filter.winner }">
+				  	<a href ng-click="vm.filter.winner = 1">Finished</a>
+			  	</li>
+				</ul>
 			</div>
 		</div>
-		<!-- competitions -->
+		<!-- matches -->
 		<div class="row">
-			<div class="col-xs-6">
-				<ul class="list-group">
-					<li ng-repeat="competition in competition.current.competitions" class="list-group-item">
-						{{ competition.name }} {{ competition.created }} 
-						<button ng-click="competition.competitionDetails(competition)" class="btn btn-primary btn-sm">Details</button>
-					</li>
-				</ul>
+			<div ng-repeat="match in competition.current.matches" class="col-xs-12 col-sm-6 col-lg-4"
+			ng-if="!!vm.filter.winner == !!match.winner " >
+			<!--  -->
+				<div class="thumbnail">
+					<div class="caption" ng-class="{'bg-success': match.winner }">
+						<div class="alert" ng-class="{'alert-info': !match.calls.length , 'alert-success': match.calls.length}">
+							<h4>
+							<small>Round</small>
+							{{ match.round }}
+							<small>Match</small>
+							<strong>{{ match.order }}</strong>
+							<small>table</small>
+							<strong><big>{{ match.calls.slice(-1)[0].table }}</big></strong>
+							</h4>
+						</div>
+						<!-- Calls -->
+						<div class="row" ng-if="!match.winner">
+							<div class="col-xs-12">
+								<button class="btn btn-success" ng-click="competition.callMatch(match)">Call! ({{ match.calls.length }})</button>
+								<button class="btn btn-sm btn-danger" ng-click="competition.clearCalls(match)" ng-if="match.calls.length">Clear calls</button>
+							</div>
+						</div>
+						<!-- WInner -->
+						<div class="row" ng-if="!!match.winner">
+							<div class="col-xs-12">
+								<div class="alert alert-info">
+									<strong>Winner:</strong>
+									<p ng-if="match.winner.name">{{ match.winner.name }}</p>
+									<p ng-repeat="player in match.winner.players">
+										{{ player.name.first + ' ' + player.name.last }}
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+						<p></p>
+							<div class="col-xs-12">
+								<dl class="dl-horizontal">
+									<dt>
+									<button ng-if="match.calls.length" class="btn btn-xs btn-warning" ng-click="competition.selectWinner(match, match.team1)">Select winner</button>
+									Team 1 {{ match.team1.name }}
+									</dt>
+									<dd>
+									<p ng-repeat="player in match.team1.players">
+										{{ player.name.first + ' ' + player.name.last }}
+									</p>
+									<p ng-if="!match.team1">
+										---------
+									</p>
+									</dd>
+									<dt>
+									<button ng-if="match.calls.length" class="btn btn-xs btn-warning" ng-click="competition.selectWinner(match, match.team2)">Select winner</button>
+									Team 2 {{ match.team2.name }}
+									</dt>
+									<dd>
+									<p ng-repeat="player in match.team2.players">
+										{{ player.name.first + ' ' + player.name.last }}
+									</p>
+									<p ng-if="!match.team2">
+										---------
+									</p>
+									</dd>
+								</dl>
+							</div>
+						</div>
+
+						{{ match.created }}
+						<button ng-click="match.matchDetails(match)" class="btn btn-primary btn-sm">Details</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
