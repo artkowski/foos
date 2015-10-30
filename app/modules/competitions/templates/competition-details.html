@@ -33,11 +33,11 @@
 					</h2>
 				</div>
 				<ul class="nav nav-tabs">
-				  <li role="presentation" ng-class="{active: !vm.filter.winner }">
-				  	<a href ng-click="vm.filter.winner = 0">Current</a>
+				  <li role="presentation" ng-class="{active: !competition.filter.winner }">
+				  	<a href ng-click="competition.filter.winner = 0">Current</a>
 				  	</li>
-				  <li role="presentation" ng-class="{active: vm.filter.winner }">
-				  	<a href ng-click="vm.filter.winner = 1">Finished</a>
+				  <li role="presentation" ng-class="{active: competition.filter.winner }">
+				  	<a href ng-click="competition.filter.winner = 1">Finished</a>
 			  	</li>
 				</ul>
 			</div>
@@ -45,7 +45,7 @@
 		<!-- matches -->
 		<div class="row">
 			<div ng-repeat="match in competition.current.matches" class="col-xs-12 col-sm-6 col-lg-4"
-			ng-if="!!vm.filter.winner == !!match.winner " >
+			ng-if="!!competition.filter.winner == !!match.winner " >
 			<!--  -->
 				<div class="thumbnail">
 					<div class="caption" ng-class="{'bg-success': match.winner }">
@@ -54,6 +54,7 @@
 							<small>Round</small>
 							{{ match.round }}
 							<small>Match</small>
+							<span ng-if="match.final">FINAL</span>
 							<strong>{{ match.order }}</strong>
 							<small>table</small>
 							<strong><big>{{ match.calls.slice(-1)[0].table }}</big></strong>
@@ -62,8 +63,9 @@
 						<!-- Calls -->
 						<div class="row" ng-if="!match.winner">
 							<div class="col-xs-12">
-								<button class="btn btn-success" ng-click="competition.callMatch(match)">Call! ({{ match.calls.length }})</button>
+								<button class="btn btn-success" ng-click="competition.callMatch(match)">Call! <span class="badge">{{ match.calls.length }}</span></button>
 								<button class="btn btn-sm btn-danger" ng-click="competition.clearCalls(match)" ng-if="match.calls.length">Clear calls</button>
+								<span class="pull-right">Losses <span class="badge">{{ match.losses }}</span></span>	
 							</div>
 						</div>
 						<!-- WInner -->
@@ -109,9 +111,12 @@
 								</dl>
 							</div>
 						</div>
-
-						{{ match.created }}
-						<button ng-click="match.matchDetails(match)" class="btn btn-primary btn-sm">Details</button>
+						<p>
+							<small>Last call: </small>{{ match.calls.slice(-1)[0].date }}
+						</p>
+						<p>
+							<small>Created: </small>{{ match.created }}
+						</p>
 					</div>
 				</div>
 			</div>

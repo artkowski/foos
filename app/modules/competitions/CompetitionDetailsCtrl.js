@@ -46,7 +46,7 @@ module.exports = function($state, $stateParams, currentCompetition, CompetitionS
 
 	function selectWinner(match, winner) {
 		console.log(winner);
-		return Competition.selectWinner(vm.current._id, match._id, winner._id).then(function(data) {
+		return Competition.selectWinner(vm.current._id, match._id, winner ? winner._id : null).then(function(data) {
 			match.winner = winner;
 		});
 	}
@@ -56,6 +56,8 @@ module.exports = function($state, $stateParams, currentCompetition, CompetitionS
 	}
 
 	function start() {
+		// if(!confirm('Start competition now?')) return;
+		if(vm.current.matches.length && !confirm('Old matches are going to remove, confirm')) return;
 		return Competition.start(vm.current._id).then(function(matches) {
 			vm.current.matches = _.clone(matches);
 			// console.log('start', data);
