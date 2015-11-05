@@ -1,5 +1,5 @@
 // leaugedetails
-module.exports = /* @ngInject */ function($uibModal, $state, $stateParams, currentLeague, LeagueService) {
+module.exports = /* @ngInject */ function($rootScope, $uibModal, $state, $stateParams, currentLeague, LeagueService) {
 	var vm = this;
 	vm.current = currentLeague;
 	vm.form = {};
@@ -8,7 +8,6 @@ module.exports = /* @ngInject */ function($uibModal, $state, $stateParams, curre
 	vm.refresh = getCurrent;
 	vm.newTournament = newTournament;
 	vm.tournamentDetails = tournamentDetails;
-
 
 	function getCurrent() {
 		return LeagueService.getOne($stateParams.leagueId).then(function(leauge) {

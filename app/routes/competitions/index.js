@@ -35,21 +35,24 @@ module.exports = /* @ngInject */ function($stateProvider) {
 				templateUrl: 'modules/competitions/templates/competition-details.html',
 				controller: 'CompetitionDetailsCtrl',
 				controllerAs: 'competition',
-				resolve: {
-					currentCompetition: currentCompetition
-				}
 			}
 		},
+		resolve: {
+			currentCompetition: currentCompetition
+		},
 		ncyBreadcrumb: {
-			label: 'Competition {{ 1+1 }}'
+			label: 'Competition {{ current.competition.name }}'
 		}
 	};
 
 	// @ngInject
-	function currentCompetition($stateParams, CompetitionService) {
+	function currentCompetition($rootScope, $stateParams, CompetitionService) {
 		console.log($stateParams);
 		var Competition = new CompetitionService($stateParams);
-		return Competition.getOne($stateParams.competitionId);
+		return Competition.getOne($stateParams.competitionId).then(function(competition) {
+			$rootScope.current.competition = competition;
+			return competition;
+		});
 	}
 
 	Lazy(competitions).each(function(route) {

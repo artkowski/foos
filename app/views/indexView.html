@@ -3,10 +3,11 @@
 		Witaj w aplikacji do obsługi turniejów piłkarzykowych, ponieżej mamy listę lig, w ramach których mamy możliwośc organizaji turniejów.
 	</p>
 
+	<h2>Leagues list: </h2>
 	<ul class="list-group">
 		<li ng-repeat="league in leagues.list" class="list-group-item">
-			{{ league.name }} {{ league.created }} 
 			<button ui-sref="league-details({leagueId: league._id})" class="btn btn-primary btn-sm">Details</button>
+			League <b>{{ league.name }}</b> {{ league.created }} 
 		</li>
 	</ul>
 

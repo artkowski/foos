@@ -1,14 +1,19 @@
 
-
-module.exports = /* @ngInject */ function($uibModal, $state, $stateParams, currentTournament, TournamentService) {
+module.exports = /* @ngInject */ function($scope, $uibModal, $state, $stateParams,
+ currentLeague, currentTournament, TournamentService) {
 	var Tournament = new TournamentService($stateParams.leagueId);
 
 	var vm = this;
+	// console.log($scope.league);
+	// vm.parentTournaments = $scope.league.tournaments;
+	// console.log('vm.parentTournaments', vm.parentTournaments);
 	vm.current = currentTournament;
 	vm.form = {};
 	vm.edit = edit;
 	vm.newCompetition = newCompetition;
 	vm.competitionDetails = competitionDetails;
+
+	
 
 	function edit() {
 		$uibModal.open({

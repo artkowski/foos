@@ -35,21 +35,29 @@ module.exports = /* @ngInject */ function($stateProvider) {
 				templateUrl: 'modules/tournaments/templates/tournament-details.html',
 				controller: 'TournamentDetailsCtrl',
 				controllerAs: 'tournament',
-				resolve: {
-					currentTournament: currentTournament
-				}
 			}
 		},
+		resolve: {
+			currentTournament: currentTournament
+		},
 		ncyBreadcrumb: {
-			label: 'Tournament {{ tournament.name }}'
+			label: 'Tournament {{ current.tournament.name }}'
 		}
 	};
 
 	// @ngInject
-	function currentTournament($stateParams, TournamentService) {
-		console.log($stateParams);
+	function currentTournament($rootScope, $stateParams, currentLeague, TournamentService) {
 		var Tournament = new TournamentService($stateParams.leagueId);
-		return Tournament.getOne($stateParams.tournamentId);
+		return Tournament.getOne($stateParams.tournamentId).then(function(tournament) {
+			// find tournament in currentLeague and make reference
+			var idx = _.findIndex(currentLeague.tournaments, {_id: tournament._id});
+			if(idx > -1) {
+				currentLeague.tournaments[idx] = tournament;
+			}
+			$rootScope.current.tournament = tournament;
+			//return result
+			return tournament;
+		});
 	}
 
 	Lazy(tournaments).each(function(route) {

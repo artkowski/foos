@@ -16,10 +16,29 @@ module.exports = function($state, $stateParams, currentCompetition, CompetitionS
 	vm.selectWinner = selectWinner;
 	vm.filter = {}
 
+	vm.show = vm.show || {};
+	vm.show.current = showCurrent;
+	vm.show.finished = showFinished;
+	vm.show.results = showResults;
+	showCurrent();
+
 	function getCurrent() {
 		return Competition.getOne($stateParams.competitionId).then(function(current) {
 			vm.current = current;
 		})
+	}
+
+	function showCurrent() {
+		vm.filter.results = 0;
+		vm.filter.winner = 0;
+	}
+	function showFinished() {
+		vm.filter.results = 0;
+		vm.filter.winner = 1;
+	}
+	function showResults() {
+		vm.filter.results = 1;
+		vm.filter.winner = 2;
 	}
 
 	function callMatch(match) {
@@ -48,6 +67,7 @@ module.exports = function($state, $stateParams, currentCompetition, CompetitionS
 		console.log(winner);
 		return Competition.selectWinner(vm.current._id, match._id, winner ? winner._id : null).then(function(data) {
 			match.winner = winner;
+			vm.refresh();
 		});
 	}
 

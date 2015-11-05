@@ -17,21 +17,26 @@ module.exports = /* @ngInject */ function($stateProvider) {
 			'content@base': {
 				templateUrl: 'modules/leagues/templates/league-details.html',
 				controller: 'LeagueDetailsCtrl',
-				controllerAs: 'league',
-				resolve: {
-					currentLeague: currentLeague
-				}
+				controllerAs: 'league'
 			}
 		},
+		resolve: {
+			currentLeague: currentLeague
+		},
 		ncyBreadcrumb: {
-			label: 'League ',
+			label: 'League {{ current.league.name }}',
 			parent: 'indexView'
 		}
 	};
 
 	// @ngInject
-	function currentLeague($stateParams, LeagueService) {
-		return LeagueService.getOne($stateParams.leagueId);
+	function currentLeague($rootScope, $stateParams, LeagueService) {
+		$rootScope.current = $rootScope.current || {};
+		console.log('currentLeague get');
+		return LeagueService.getOne($stateParams.leagueId).then(function(league) {
+			$rootScope.current.league = league;
+			return league;
+		});
 	}
 
 	Lazy(leagues).each(function(route) {
