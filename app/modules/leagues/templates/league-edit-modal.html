@@ -7,6 +7,15 @@
 				<input type="text" placeholder="Name" ng-required="true" class="form-control" ng-model="league.form.name">
 			</div>
 		</div>
+		<div class="col-xs-offset-2 col-xs-10">
+			Owners:
+			<ul class="list-group">
+			  <li ng-repeat="owner in league.form.owners" class="list-group-item">
+				  {{ owner.name }}
+					<!-- <button type="button" class="btn btn-xs btn-danger pull-right" ng-click="league.removeOwner(owner)">x</button> -->
+				</li>
+			</ul>
+		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button class="btn btn-primary">Save</button>

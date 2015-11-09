@@ -29,16 +29,19 @@ module.exports = function($state, $stateParams, currentCompetition, CompetitionS
 	}
 
 	function showCurrent() {
+		vm.show.name = 'current';
 		vm.filter.results = 0;
 		vm.filter.winner = 0;
 	}
 	function showFinished() {
+		vm.show.name = 'finished';
 		vm.filter.results = 0;
 		vm.filter.winner = 1;
 	}
 	function showResults() {
+		vm.show.name = 'results';
 		vm.filter.results = 1;
-		vm.filter.winner = 2;
+		vm.filter.winner = 0;
 	}
 
 	function callMatch(match) {
@@ -80,6 +83,8 @@ module.exports = function($state, $stateParams, currentCompetition, CompetitionS
 		if(vm.current.matches.length && !confirm('Old matches are going to remove, confirm')) return;
 		return Competition.start(vm.current._id).then(function(matches) {
 			vm.current.matches = _.clone(matches);
+			vm.current.results = [];
+			vm.current.start = true;
 			// console.log('start', data);
 		});
 	}

@@ -1,23 +1,13 @@
 var _ = require('lodash');
 
-module.exports = /* @ngInject */ function(UserService, $uibModal, Notification) {
+module.exports = /* @ngInject */ function(Users, UserService, $uibModal, Notification) {
 	// ViewModel
 	var vm = this;
-	vm.list = [];
+	vm.list = Users;
 	vm.form = {};
 	vm.add = addUser;
 	vm.edit = editUser;
 	vm.remove = removeUser;
-
-	function init() {
-		console.log('UsersCtrl init');
-		UserService.getAll().then(function(data) {
-			vm.list = data;
-		}, function(res) {
-			console.error('Error', res);
-		});
-		
-	}
 
 	function addUser() {
 		UserService.add(vm.form).then(function(data) {
@@ -54,7 +44,4 @@ module.exports = /* @ngInject */ function(UserService, $uibModal, Notification) 
 		});
 	}
 
-	init();
-
-	return vm;
 };

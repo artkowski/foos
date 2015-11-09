@@ -20,11 +20,18 @@ module.exports = /* @ngInject */ function($stateProvider) {
 				controllerAs: 'users'
 			}
 		},
+		resolve: {
+			Users: getUsers
+		},
 		ncyBreadcrumb: {
 			label: 'Users',
 			parent: 'indexView'
 		}
 	};
+
+	function getUsers(UserService) {
+		return UserService.getAll();
+	}
 
 	Lazy(users).each(function(route) {
 		$stateProvider.state(route);

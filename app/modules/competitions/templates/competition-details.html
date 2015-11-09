@@ -33,13 +33,13 @@
 					</h2>
 				</div>
 				<ul class="nav nav-tabs">
-				  <li role="presentation" ng-class="{active: !competition.filter.winner }">
+				  <li role="presentation" ng-class="{active: (competition.show.name == 'current') }">
 				  	<a href ng-click="competition.show.current()">Current</a>
 				  	</li>
-				  <li role="presentation" ng-class="{active: competition.filter.winner }">
+				  <li role="presentation" ng-class="{active: (competition.show.name == 'finished') }">
 				  	<a href ng-click="competition.show.finished()">Finished</a>
 			  	</li>
-			  	<li role="presentation" ng-class="{active: competition.filter.results }">
+			  	<li role="presentation" ng-class="{active: (competition.show.name == 'results') }">
 				  	<a href ng-click="competition.show.results()">Results</a>
 			  	</li>
 				</ul>
@@ -132,14 +132,14 @@
 				<table class="table table-bordered table-striped table-hover">
 					<thead>
 						<tr>
-							<th>#</th>
+							<th>Place</th>
 							<th>Players</th>
 							<th>Points</th>
-							<th>Created</th>
+							<th>Finished</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="result in competition.current.results">
+						<tr ng-repeat="result in competition.current.results | orderBy: 'place'">
 							<td>{{ result.place }}</td>
 							<td>
 								<ul class="list-group" >

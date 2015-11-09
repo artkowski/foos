@@ -1,7 +1,7 @@
 var angular = require('angular');
 // var Lazy = require('lazy.js'),
 	routes = require('./routes/index.js'),
-	config = require('./assets/helpers/config.js'),
+	// config = require('./assets/helpers/config.js'),
 	services = require('./services'),
 	modules = require('./modules'),
 	_ = require('lodash');
@@ -22,7 +22,7 @@ angular.module('foosApp.app', [
 	'ncy-angular-breadcrumb'
 ])
 
-.constant("$config", config)
+// .constant("$config", config)
 
 // interceptors
 .config(function($httpProvider) {
@@ -100,7 +100,6 @@ angular.module('foosApp.app', [
 
 })
 
-.run(function($rootScope, $state, $config) {
-	console.log($config);
+.run(function($rootScope, $state) {
 	$rootScope.$state = $state;
 });

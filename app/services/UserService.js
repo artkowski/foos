@@ -1,6 +1,7 @@
+var config = require('../config');
 // serwis z userami zwracający singleton
 
-module.exports = /* @ngInject */ function($config, $q, $http) {
+module.exports = /* @ngInject */ function($q, $http) {
 	// angular style guide
 	var resource = 'users';
 
@@ -15,7 +16,7 @@ module.exports = /* @ngInject */ function($config, $q, $http) {
 	function getAll() {
     return $http({
       method: 'GET',
-      url: $config.api_url + resource
+      url: config.api_url + resource
     }).then(function(res) {
     	return res.data;
     });
@@ -24,7 +25,7 @@ module.exports = /* @ngInject */ function($config, $q, $http) {
   function add(user) {
   	return $http({
   		method: 'POST',
-      url: $config.api_url + resource,
+      url: config.api_url + resource,
       data: user
   	}).then(function(res) {
   		if(res.data.success) {
@@ -37,7 +38,7 @@ module.exports = /* @ngInject */ function($config, $q, $http) {
   function edit(id, data) {
   	return $http({
   		method: 'PUT',
-  		url: $config.api_url + [resource, id].join('/'),
+  		url: config.api_url + [resource, id].join('/'),
   		data: data
   	}).then(function(res) {
   		if(res.data.success) {
@@ -50,7 +51,7 @@ module.exports = /* @ngInject */ function($config, $q, $http) {
   function remove(id) {
   	return $http({
   		method: 'DELETE',
-  		url: $config.api_url + [resource, id].join('/'),
+  		url: config.api_url + [resource, id].join('/'),
   	}).then(function(res) {
   		return res.data;
   	});

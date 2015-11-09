@@ -1,7 +1,7 @@
 
 
 module.exports =  /* @ngInject */ function(currentTournament, $state, $stateParams, $modalInstance, TournamentService) {
-	var Tournament = new TournamentService($stateParams);
+	var Tournament = new TournamentService($stateParams.leagueId);
 
 	var vmModal = this;
 	vmModal.form = _.clone(currentTournament, true);

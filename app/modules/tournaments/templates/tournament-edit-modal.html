@@ -31,6 +31,15 @@
 				<input type="date" placeholder="End Date" class="form-control" ng-model="tournament.form.endDate">
 			</div>
 		</div>
+		<div class="col-xs-offset-2 col-xs-10">
+			Owners:
+			<ul class="list-group">
+			  <li ng-repeat="owner in tournament.form.owners" class="list-group-item">
+				  {{ owner.name }}
+					<!-- <button type="button" class="btn btn-xs btn-danger pull-right" ng-click="tournament.removeOwner(owner)">x</button> -->
+				</li>
+			</ul>
+		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button class="btn btn-primary">Save</button>

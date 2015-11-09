@@ -36,6 +36,12 @@ module.exports = /* @ngInject */ function($q, $injector, $timeout) {
       }, 3000, false);
     }
 
+    if(res.status == 401) {
+    	//logout user
+    	var AuthService = $injector.get('AuthService');
+    	AuthService.logout();
+    }
+
 		var message = res.data.message 
 			|| res.data.error && res.data.error.message 
 			|| res.statusText || false; 
