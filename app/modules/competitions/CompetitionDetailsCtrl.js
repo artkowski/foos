@@ -1,11 +1,11 @@
 
 // @ngInject
-module.exports = function($state, $stateParams, currentCompetition, CompetitionService) {
+module.exports = function($rootScope, $state, $stateParams, currentCompetition, CompetitionService) {
 	var Competition = new CompetitionService($stateParams);
 
 	var vm = this;
 	vm.list = [];
-	vm.current = currentCompetition;
+	// vm.current = currentCompetition;
 	vm.form = {};
 	vm.types = Competition.types;
 	vm.teams = teams;
@@ -15,6 +15,7 @@ module.exports = function($state, $stateParams, currentCompetition, CompetitionS
 	vm.clearCalls = clearCalls;
 	vm.selectWinner = selectWinner;
 	vm.filter = {}
+	vm.ping = ping;
 
 	vm.show = vm.show || {};
 	vm.show.current = showCurrent;
@@ -22,7 +23,23 @@ module.exports = function($state, $stateParams, currentCompetition, CompetitionS
 	vm.show.results = showResults;
 	showCurrent();
 
+	competitionWs();
+
+	function ping() {
+		return competitionWs();
+	}
+
+	function competitionWs() {
+		$rootScope.$on('competitions:get', function(e, competition) {
+			console.log('competitions:get', competition)
+			vm.current = competition;
+		});
+		return Competition.getOneWs($stateParams.competitionId);
+	}
+
 	function getCurrent() {
+		return console.log('getCurrent');
+
 		return Competition.getOne($stateParams.competitionId).then(function(current) {
 			vm.current = current;
 		})
